@@ -3,7 +3,7 @@ esphome:
   platform: ESP8266
   board: nodemcuv2
   includes:
-    - MuxSensor.h
+    - Mux.h
   libraries:
     - CD74HC4067
 
@@ -25,31 +25,66 @@ mqtt:
   discovery: false
   topic_prefix: e/living
 
-binary_sensor:
+custom_component:
+- id: mux
+  lambda: |-
+    auto mux = new Mux(14);
+    return {mux};
+
+switch:
 - platform: custom
   lambda: |-
-    // int pins[4] = {5,4,0,2};
-    // int channels[8] = {0,2,4,6,8,10,12,14};
-    // MuxSensor *muxSensor = new MuxSensor(pins, 14, channels);
-    auto muxSensor = new MuxSensor();
-    App.register_component(muxSensor);
-    return {
-      muxSensor->sensors[0],
-      muxSensor->sensors[1],
-      muxSensor->sensors[2],
-      muxSensor->sensors[3],
-      muxSensor->sensors[4],
-      muxSensor->sensors[5],
-      muxSensor->sensors[6],
-      muxSensor->sensors[7],
-    };
+    return {mux_switch(mux, 1),
+            mux_switch(mux, 3),
+            mux_switch(mux, 5),
+            mux_switch(mux, 7),
+            mux_switch(mux, 9),
+            mux_switch(mux, 11),
+            mux_switch(mux, 13),
+            mux_switch(mux, 15)};
+  switches:
+    - name: "S1"
+      inverted: true
+    - name: "S2"
+      inverted: true
+    - name: "S3"
+      inverted: true
+    - name: "S4"
+      inverted: true
+    - name: "S5"
+      inverted: true
+    - name: "S6"
+      inverted: true
+    - name: "S7"
+      inverted: true
+    - name: "S8"
+      inverted: true
 
-  binary_sensors:
-  - name: "S1"
-  - name: "S2"
-  - name: "S3"
-  - name: "S4"
-  - name: "S5"
-  - name: "S6"
-  - name: "S7"
-  - name: "S8"
+# binary_sensor:
+# - platform: custom
+#   lambda: |-
+#     // int pins[4] = {5,4,0,2};
+#     // int channels[8] = {0,2,4,6,8,10,12,14};
+#     // MuxSensor *muxSensor = new MuxSensor(pins, 14, channels);
+#     auto muxSensor = new MuxSensor();
+#     App.register_component(muxSensor);
+#     return {
+#       muxSensor->sensors[0],
+#       muxSensor->sensors[1],
+#       muxSensor->sensors[2],
+#       muxSensor->sensors[3],
+#       muxSensor->sensors[4],
+#       muxSensor->sensors[5],
+#       muxSensor->sensors[6],
+#       muxSensor->sensors[7],
+#     };
+
+#   binary_sensors:
+#   - name: "S1"
+#   - name: "S2"
+#   - name: "S3"
+#   - name: "S4"
+#   - name: "S5"
+#   - name: "S6"
+#   - name: "S7"
+#   - name: "S8"
