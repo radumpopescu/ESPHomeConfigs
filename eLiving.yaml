@@ -1,0 +1,55 @@
+esphome:
+  name: e_living
+  platform: ESP8266
+  board: nodemcuv2
+  includes:
+    - MuxSensor.h
+  libraries:
+    - CD74HC4067
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+logger:
+  level: DEBUG
+  esp8266_store_log_strings_in_flash: False
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+mqtt:   
+  broker: 192.168.1.10
+  discovery: false
+  topic_prefix: e/living
+
+binary_sensor:
+- platform: custom
+  lambda: |-
+    // int pins[4] = {5,4,0,2};
+    // int channels[8] = {0,2,4,6,8,10,12,14};
+    // MuxSensor *muxSensor = new MuxSensor(pins, 14, channels);
+    auto muxSensor = new MuxSensor();
+    App.register_component(muxSensor);
+    return {
+      muxSensor->sensors[0],
+      muxSensor->sensors[1],
+      muxSensor->sensors[2],
+      muxSensor->sensors[3],
+      muxSensor->sensors[4],
+      muxSensor->sensors[5],
+      muxSensor->sensors[6],
+      muxSensor->sensors[7],
+    };
+
+  binary_sensors:
+  - name: "S1"
+  - name: "S2"
+  - name: "S3"
+  - name: "S4"
+  - name: "S5"
+  - name: "S6"
+  - name: "S7"
+  - name: "S8"
