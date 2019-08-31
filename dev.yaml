@@ -1,0 +1,50 @@
+esphome:
+  name: dev
+  platform: ESP8266
+  board: esp01_1m
+  # includes:
+  #   - mux_sensor.h
+  # libraries:
+  #   - CD74HC4067
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# Enable logging
+logger:
+  level: DEBUG
+  esp8266_store_log_strings_in_flash: False
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+mqtt:   
+  broker: 192.168.1.10
+  discovery: false
+  topic_prefix: test/dev
+
+# binary_sensor:
+# - platform: custom
+#   lambda: |-
+#     auto muxSensor = new MuxSensor();
+#     App.register_component(muxSensor);
+#     return {muxSensor};
+
+#   binary_sensors:
+#     name: "My Mux Sensor"
+
+# binary_sensor:
+#   - platform: gpio
+#     name: "s"
+#     pin:
+#       number: GPIO14
+#       inverted: True
+#       mode: INPUT_PULLUP
+switch:
+  - platform: gpio
+    pin: GPIO13
+    name: "r"
+    inverted: true
