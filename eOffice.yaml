@@ -1,5 +1,5 @@
 esphome:
-  name: first
+  name: e_office
   platform: ESP8266
   board: nodemcuv2
 
@@ -7,29 +7,25 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-# Enable logging
 logger:
   level: DEBUG
-
-# Enable Home Assistant API
-api:
 
 ota:
 
 mqtt:   
   broker: 192.168.1.10
   discovery: false
-  topic_prefix: electric/office
+  topic_prefix: e/office
 
 binary_sensor:
   - platform: gpio
-    name: "switch1"
+    name: "office"
     pin:
       number: D5
       inverted: True
       mode: INPUT_PULLUP
   - platform: gpio
-    name: "switch2"
+    name: "tech"
     pin:
       number: D6
       inverted: True
@@ -39,9 +35,9 @@ binary_sensor:
 switch:
   - platform: gpio
     pin: D7
-    name: "relay1"
+    name: "office"
     inverted: true
   - platform: gpio
     pin: D8
-    name: "relay2"
+    name: "tech"
     inverted: true
