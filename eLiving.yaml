@@ -3,6 +3,7 @@ esphome:
   platform: ESP8266
   board: nodemcuv2
   includes:
+    - ape.h
     - MuxSensor.h
   libraries:
     - CD74HC4067
@@ -13,12 +14,18 @@ wifi:
 
 logger:
   level: DEBUG
-  esp8266_store_log_strings_in_flash: False
-
-# Enable Home Assistant API
-api:
+  # esp8266_store_log_strings_in_flash: False
 
 ota:
+
+i2c:
+  id: i2ccomponent
+
+custom_component:
+- id: ape
+  lambda: |-
+    auto ape_component = new ArduinoPortExtender(i2ccomponent, 0x08);
+    return {ape_component};
 
 mqtt:   
   broker: 192.168.1.10
@@ -28,9 +35,9 @@ mqtt:
 binary_sensor:
 - platform: custom
   lambda: |-
-    // int pins[4] = {5,4,0,2};
-    // int channels[8] = {0,2,4,6,8,10,12,14};
-    // MuxSensor *muxSensor = new MuxSensor(pins, 14, channels);
+    // int pins[4] = {14, 12, 13, 15};
+    // int channels[8] = {0, 2, 4, 6, 8, 10, 12, 14};
+    // MuxSensor *muxSensor = new MuxSensor(pins, 2, channels);
     auto muxSensor = new MuxSensor();
     App.register_component(muxSensor);
     return {
@@ -43,7 +50,6 @@ binary_sensor:
       muxSensor->sensors[6],
       muxSensor->sensors[7],
     };
-
   binary_sensors:
   - name: "S1"
   - name: "S2"
@@ -53,3 +59,34 @@ binary_sensor:
   - name: "S6"
   - name: "S7"
   - name: "S8"
+
+
+switch:
+- platform: custom
+  lambda: |-
+    return {ape_switch(ape, 5),
+            ape_switch(ape, 6),
+            ape_switch(ape, 7),
+            ape_switch(ape, 8),
+            ape_switch(ape, 9),
+            ape_switch(ape, 10),
+            ape_switch(ape, 11),
+            ape_switch(ape, 12)
+    };
+  switches:
+  - name: "R1"
+    inverted: true
+  - name: "R2"
+    inverted: true
+  - name: "R3"
+    inverted: true
+  - name: "R4"
+    inverted: true
+  - name: "R5"
+    inverted: true
+  - name: "R6"
+    inverted: true
+  - name: "R7"
+    inverted: true
+  - name: "R8"
+    inverted: true
