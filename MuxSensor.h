@@ -1,7 +1,7 @@
 #include "esphome.h"
 #include <CD74HC4067.h>
 
-CD74HC4067 mux(5, 4, 0, 2);
+CD74HC4067 mux(14, 12, 13, 15);
 
 class MuxSensor : public PollingComponent {
     private:
@@ -19,8 +19,8 @@ class MuxSensor : public PollingComponent {
 
         MuxSensor() : PollingComponent(100) {
             // _pins = {5,4,0,2};
-            _sPin = 14;
-            int channels[] = {0,2,4,6,8,10,12,14};
+            _sPin = 2;
+            int channels[] = {0, 2, 4, 6, 8, 10, 12, 14};
             for (int i: channels) {
                 _channels.push_back(i);
                 sensors.push_back(new BinarySensor());
@@ -30,7 +30,7 @@ class MuxSensor : public PollingComponent {
         void setup() override {
             // _mux = new CD74HC4067(_pins[0], _pins[1], _pins[2], _pins[3]);
               pinMode(_sPin, INPUT_PULLUP);
-              ESP_LOGD("MuxSensor", "Setup complete");
+              // ESP_LOGD("MuxSensor", "Setup complete");
         }
         
         void update() override {
