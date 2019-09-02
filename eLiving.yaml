@@ -52,13 +52,29 @@ binary_sensor:
     };
   binary_sensors:
   - name: "S1"
+    filters:
+      - invert:
   - name: "S2"
+    filters:
+      - invert:
   - name: "S3"
+    filters:
+      - invert:
   - name: "S4"
+    filters:
+      - invert:
   - name: "S5"
+    filters:
+      - invert:
   - name: "S6"
+    filters:
+      - invert:
   - name: "S7"
+    filters:
+      - invert:
   - name: "S8"
+    filters:
+      - invert:
 
 
 switch:
