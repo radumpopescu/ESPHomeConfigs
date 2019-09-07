@@ -57,22 +57,22 @@ binary_sensor:
   - name: "S2"
     filters:
       - invert:
-  - name: "livingLeft"
+  - name: "living_left"
     filters:
       - invert:
-  - name: "livingRight"
+  - name: "living_right"
     filters:
       - invert:
-  - name: "leftDoorRight"
+  - name: "leftDoor_right"
     filters:
       - invert:
-  - name: "livingUp"
+  - name: "living_up"
     filters:
       - invert:
-  - name: "leftDoorLeft"
+  - name: "left_door_left"
     filters:
       - invert:
-  - name: "livingDown"
+  - name: "living_down"
     filters:
       - invert:
 
@@ -100,7 +100,7 @@ switch:
     inverted: true
   - name: "R5"
     inverted: true
-  - name: "wallLeft"
+  - name: "wall_left"
     inverted: true
   - name: "R7"
     inverted: true
