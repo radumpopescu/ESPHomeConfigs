@@ -63,7 +63,7 @@ binary_sensor:
   - name: "living_right"
     filters:
       - invert:
-  - name: "leftDoor_right"
+  - name: "left_door_right"
     filters:
       - invert:
   - name: "living_up"
