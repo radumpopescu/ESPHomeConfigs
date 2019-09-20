@@ -1,7 +1,7 @@
 esphome:
-  name: e_kitchen
+  name: e_entrance
   platform: ESP8266
-  board: esp01_1m
+  board: nodemcuv2
   includes:
     - ape.h
 
@@ -27,22 +27,24 @@ custom_component:
 mqtt:   
   broker: !secret mqtt_ip
   discovery: false
-  topic_prefix: e/kitchen
+  topic_prefix: e/entrance
 
 binary_sensor:
   - platform: custom
     lambda: |-
-      return {ape_binary_sensor(ape, 11),
+      return {ape_binary_sensor(ape, 9),
+              ape_binary_sensor(ape, 10),
+              ape_binary_sensor(ape, 11),
               ape_binary_sensor(ape, 12),
               ape_binary_sensor(ape, 14),
               ape_binary_sensor(ape, 15),
               ape_binary_sensor(ape, 16),
               ape_binary_sensor(ape, 17)};
     binary_sensors:
-      - name: "hall_middle"
+      - name: "S1"
         filters:
           - invert:
-      - name: "hall_left"
+      - name: "S2"
         filters:
           - invert:
       - name: "S3"
@@ -54,7 +56,13 @@ binary_sensor:
       - name: "S5"
         filters:
           - invert:
-      - name: "hall_right"
+      - name: "S6"
+        filters:
+          - invert:
+      - name: "S7"
+        filters:
+          - invert:
+      - name: "S8"
         filters:
           - invert:
 
@@ -71,7 +79,7 @@ switch:
     inverted: true
   - name: "R2"
     inverted: true
-  - name: "living"
+  - name: "R3"
     inverted: true
-  - name: "kitchen"
+  - name: "R4"
     inverted: true

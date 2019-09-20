@@ -28,7 +28,7 @@ custom_component:
     return {ape_component};
 
 mqtt:   
-  broker: 192.168.1.10
+  broker: !secret mqtt_ip
   discovery: false
   topic_prefix: e/living
 
