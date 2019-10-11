@@ -98,7 +98,7 @@ switch:
     inverted: true
   - name: "R4"
     inverted: true
-  - name: "R5"
+  - name: "wall_right"
     inverted: true
   - name: "wall_left"
     inverted: true

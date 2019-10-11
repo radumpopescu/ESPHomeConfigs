@@ -44,13 +44,13 @@ binary_sensor:
       - name: "S1"
         filters:
           - invert:
-      - name: "S2"
+      - name: "bath1"
         filters:
           - invert:
       - name: "S3"
         filters:
           - invert:
-      - name: "S4"
+      - name: "entrance1"
         filters:
           - invert:
       - name: "S5"
@@ -59,7 +59,7 @@ binary_sensor:
       - name: "S6"
         filters:
           - invert:
-      - name: "S7"
+      - name: "stairs"
         filters:
           - invert:
       - name: "S8"
@@ -79,7 +79,7 @@ switch:
     inverted: true
   - name: "R2"
     inverted: true
-  - name: "R3"
+  - name: "stairs"
     inverted: true
-  - name: "R4"
+  - name: "bath"
     inverted: true
