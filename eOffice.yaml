@@ -12,8 +12,13 @@ logger:
 
 ota:
 
+api:
+  password: !secret api_password
+
 mqtt:   
   broker: !secret mqtt_ip
+  username: !secret mqtt_user
+  password: !secret mqtt_password
   discovery: false
   topic_prefix: e/office
 
@@ -24,20 +29,34 @@ binary_sensor:
       number: D5
       inverted: True
       mode: INPUT_PULLUP
+    on_state:
+      # then: # Automation should always be here...
+      #   if:
+      #     condition:
+      #       mqtt.connected:
+      #     else:
+      - switch.toggle: office
   - platform: gpio
     name: "tech"
     pin:
       number: D6
       inverted: True
       mode: INPUT_PULLUP
-# TODO Make a backup when no mqtt connection, 
-# automatically turn on on binary_sensor change
+    on_state:
+      # then:
+      #   if:
+      #     condition:
+      #       mqtt.connected:
+      #     else:
+      - switch.toggle: tech
 switch:
   - platform: gpio
     pin: D7
     name: "office"
+    id: "office"
     inverted: true
   - platform: gpio
     pin: D8
     name: "tech"
+    id: "tech"
     inverted: true

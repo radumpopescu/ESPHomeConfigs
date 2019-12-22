@@ -15,6 +15,9 @@ logger:
 
 ota:
 
+api:
+  password: !secret api_password
+
 i2c:
   id: i2ccomponent
 
@@ -26,6 +29,8 @@ custom_component:
 
 mqtt:   
   broker: !secret mqtt_ip
+  username: !secret mqtt_user
+  password: !secret mqtt_password
   discovery: false
   topic_prefix: e/entrance
 
@@ -41,28 +46,34 @@ binary_sensor:
               ape_binary_sensor(ape, 16),
               ape_binary_sensor(ape, 17)};
     binary_sensors:
-      - name: "S1"
+      - name: S1
         filters:
           - invert:
-      - name: "bath1"
+      - name: bath1
         filters:
           - invert:
-      - name: "S3"
+        on_state:
+          - switch.toggle: bath
+      - name: S3
         filters:
           - invert:
-      - name: "entrance1"
+      - name: entrance1
         filters:
           - invert:
-      - name: "S5"
+        on_state:
+          - switch.toggle: stairs
+      - name: S5
         filters:
           - invert:
-      - name: "S6"
+      - name: S6
         filters:
           - invert:
-      - name: "stairs"
+      - name: stairs
         filters:
           - invert:
-      - name: "S8"
+        on_state:
+          - switch.toggle: stairs
+      - name: S8
         filters:
           - invert:
 
@@ -75,11 +86,15 @@ switch:
             ape_switch(ape, 5)
     };
   switches:
-  - name: "R1"
+  - name: R1
+    id: R1
     inverted: true
-  - name: "R2"
+  - name: R2
+    id: R2
     inverted: true
-  - name: "stairs"
+  - name: stairs
+    id: stairs
     inverted: true
-  - name: "bath"
+  - name: bath
+    id: bath
     inverted: true

@@ -18,6 +18,9 @@ logger:
 
 ota:
 
+api:
+  password: !secret api_password
+
 i2c:
   id: i2ccomponent
 
@@ -29,6 +32,8 @@ custom_component:
 
 mqtt:   
   broker: !secret mqtt_ip
+  username: !secret mqtt_user
+  password: !secret mqtt_password
   discovery: false
   topic_prefix: e/living
 
@@ -51,28 +56,38 @@ binary_sensor:
       muxSensor->sensors[7],
     };
   binary_sensors:
-  - name: "S1"
+  - name: S1
     filters:
       - invert:
-  - name: "S2"
+  - name: S2
     filters:
       - invert:
-  - name: "living_left"
+  - name: living_left
     filters:
       - invert:
-  - name: "living_right"
+    on_state:
+      - switch.toggle: living
+  - name: living_right
     filters:
       - invert:
-  - name: "left_door_right"
+    on_state:
+      - switch.toggle: wall_left
+      - switch.toggle: wall_right
+  - name: left_door_right
     filters:
       - invert:
-  - name: "living_up"
+    on_state:
+      - switch.toggle: wall_left
+      - switch.toggle: wall_right
+  - name: living_up
     filters:
       - invert:
-  - name: "left_door_left"
+  - name: left_door_left
     filters:
       - invert:
-  - name: "living_down"
+    on_state:
+      - switch.toggle: living
+  - name: living_down
     filters:
       - invert:
 
@@ -90,19 +105,27 @@ switch:
             ape_switch(ape, 12)
     };
   switches:
-  - name: "R1"
+  - name: R1
+    id: R1
     inverted: true
-  - name: "living"
+  - name: living
+    id: living
     inverted: true
-  - name: "R3"
+  - name: R3
+    id: R3
     inverted: true
-  - name: "R4"
+  - name: R4
+    id: R4
     inverted: true
-  - name: "wall_right"
+  - name: wall_right
+    id: wall_right
     inverted: true
-  - name: "wall_left"
+  - name: wall_left
+    id: wall_left
     inverted: true
-  - name: "R7"
+  - name: R7
+    id: R7
     inverted: true
-  - name: "R8"
+  - name: R8
+    id: R8
     inverted: true
