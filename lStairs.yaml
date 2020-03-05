@@ -1,0 +1,44 @@
+esphome:
+  name: l_stairs
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+logger:
+  level: DEBUG
+
+ota:
+
+mqtt:   
+  broker: !secret mqtt_ip
+  discovery: false
+  topic_prefix: l/stairs
+
+switch:
+  - platform: gpio
+    pin: GPIO12
+    name: "relay"
+    inverted: false
+
+# power_supply:
+  # - id: power
+    # pin: GPIO12
+
+light:
+#   - platform: neopixelbus
+#     pin: GPIO14
+#     num_leds: 369
+#     method: BIT_BANG
+#     variant: SK6812
+#     type: GRBW
+#     name: "l"
+    # power_supply: power
+  - platform: fastled_clockless
+    chipset: SK6812
+    pin: GPIO14
+    num_leds: 369
+    rgb_order: GRB
+    name: "fastled"
