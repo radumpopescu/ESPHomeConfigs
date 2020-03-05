@@ -2,6 +2,10 @@ esphome:
   name: air
   platform: ESP8266
   board: d1_mini_lite
+  # platform: ESP32
+  # board: nodemcu-32s
+  # platform: ESP8266
+  # board: esp01_1m
 
 wifi:
   ssid: !secret wifi_ssid
@@ -14,15 +18,15 @@ logger:
   # esp8266_store_log_strings_in_flash: False
 
 # Enable Home Assistant API
-# api:
-  # password: !secret api_password
+api:
+  password: !secret api_password
 
 # web_server:
-  # port: 80
+# port: 80
 
 ota:
 
-mqtt:   
+mqtt:
   broker: !secret mqtt_ip
   username: !secret mqtt_user
   password: !secret mqtt_password
@@ -55,23 +59,23 @@ sensor:
       oversampling: 16x
     address: 0x76
     update_interval: 10s
-  
+
   - platform: pmsx003
     type: PMSX003
     pm_1_0:
       name: "pm1"
       filters:
-      - throttle: 15s
-      - heartbeat: 60s
-      # - debounce: 30s
-      - delta: 2.0
+        - throttle: 15s
+        - heartbeat: 60s
+        # - debounce: 30s
+        - delta: 2.0
     pm_2_5:
       name: "pm2.5"
       filters:
-      - throttle: 15s
-      - heartbeat: 60s
-      # - debounce: 30s
-      - delta: 2.0
+        - throttle: 15s
+        - heartbeat: 60s
+        # - debounce: 30s
+        - delta: 2.0
     pm_10_0:
       name: "pm10"
       filters:
@@ -79,3 +83,19 @@ sensor:
         - heartbeat: 60s
         # - debounce: 30s
         - delta: 2.0
+  # - platform: dht
+  #   model: DHT22
+  #   pin: GPIO32
+  #   temperature:
+  #     name: "temperature"
+  #     filters:
+  #       - throttle: 15s
+  #       # - heartbeat: 60s
+  #       # - debounce: 30s
+  #   humidity:
+  #     name: "humidity"
+  #     filters:
+  #       - throttle: 15s
+  #       # - heartbeat: 60s
+  #       # - debounce: 30s
+  #   update_interval: 10s
