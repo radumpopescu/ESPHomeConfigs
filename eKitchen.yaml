@@ -63,7 +63,7 @@ binary_sensor:
         filters:
           - invert:
         on_state:
-          - switch.toggle: kitchen
+          - switch.toggle: table
       - name: kitchen_middle
         filters:
           - invert:
@@ -73,7 +73,7 @@ binary_sensor:
         filters:
           - invert:
         on_state:
-          - switch.toggle: kitchen
+          - switch.toggle: table
 
 switch:
   - platform: custom
@@ -84,8 +84,8 @@ switch:
               ape_switch(ape, 5)
       };
     switches:
-      - name: R1
-        id: R1
+      - name: table
+        id: table
         inverted: true
       - name: R2
         id: R2
