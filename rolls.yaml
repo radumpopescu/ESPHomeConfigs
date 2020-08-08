@@ -18,11 +18,11 @@ api:
   password: !secret api_password
 
 # web_server:
-  # port: 80
+# port: 80
 
 ota:
 
-mqtt:   
+mqtt:
   broker: !secret mqtt_ip
   username: !secret mqtt_user
   password: !secret mqtt_password
@@ -82,17 +82,17 @@ switch:
     pin: GPIO15
     interlock: [relay3]
     restore_mode: ALWAYS_OFF
-  - platform: gpio
-    id: relay5
-    name: "s5"
-    pin: GPIO01
-    interlock: [relay6]
-    restore_mode: ALWAYS_OFF
-    inverted: true
-  - platform: gpio
-    id: relay6
-    name: "s6"
-    pin: GPIO3
-    interlock: [relay5]
-    restore_mode: ALWAYS_OFF
-    inverted: true
+  # - platform: gpio
+  #   id: relay5
+  #   name: "s5"
+  #   pin: GPIO01
+  #   interlock: [relay6]
+  #   restore_mode: ALWAYS_OFF
+  #   inverted: true
+  # - platform: gpio
+  #   id: relay6
+  #   name: "s6"
+  #   pin: GPIO3
+  #   interlock: [relay5]
+  #   restore_mode: ALWAYS_OFF
+  #   inverted: true
