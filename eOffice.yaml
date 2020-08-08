@@ -11,11 +11,12 @@ logger:
   level: DEBUG
 
 ota:
+  password: !secret ota_password
 
 api:
   password: !secret api_password
 
-mqtt:   
+mqtt:
   broker: !secret mqtt_ip
   username: !secret mqtt_user
   password: !secret mqtt_password

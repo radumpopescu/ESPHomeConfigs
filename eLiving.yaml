@@ -17,6 +17,7 @@ logger:
   # esp8266_store_log_strings_in_flash: False
 
 ota:
+  password: !secret ota_password
 
 api:
   password: !secret api_password
