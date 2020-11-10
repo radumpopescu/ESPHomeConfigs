@@ -21,6 +21,7 @@ api:
 # port: 80
 
 ota:
+  password: !secret ota_password
 
 mqtt:
   broker: !secret mqtt_ip
