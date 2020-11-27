@@ -21,6 +21,7 @@ api:
 # port: 80
 
 ota:
+  password: !secret ota_password
 
 mqtt:
   broker: !secret mqtt_ip
@@ -60,25 +61,25 @@ binary_sensor:
 switch:
   - platform: gpio
     id: relay1
-    name: "s1"
+    name: "window_up"
     pin: GPIO12
     interlock: [relay2]
     restore_mode: ALWAYS_OFF
   - platform: gpio
     id: relay2
-    name: "s2"
+    name: "window_down"
     pin: GPIO5
     interlock: [relay1]
     restore_mode: ALWAYS_OFF
   - platform: gpio
     id: relay3
-    name: "s3"
+    name: "door_up"
     pin: GPIO4
     interlock: [relay4]
     restore_mode: ALWAYS_OFF
   - platform: gpio
     id: relay4
-    name: "s4"
+    name: "door_down"
     pin: GPIO15
     interlock: [relay3]
     restore_mode: ALWAYS_OFF
