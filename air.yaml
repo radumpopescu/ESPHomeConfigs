@@ -46,54 +46,55 @@ i2c:
 
 sensor:
   - platform: wifi_signal
-    name: "wifi"
+    name: 'wifi'
     update_interval: 60s
 
   - platform: bme280
     temperature:
-      name: "temperature"
+      name: 'temperature'
       oversampling: 16x
       filters:
         - throttle: 15s
         - heartbeat: 60s
         # - debounce: 30s
-        - delta: 0.2
+        - delta: 0.1
     pressure:
-      name: "pressure"
+      name: 'pressure'
+      oversampling: 16x
       filters:
         - throttle: 15s
         - heartbeat: 60s
         # - debounce: 30s
         - delta: 1.0
     humidity:
-      name: "humidity"
+      name: 'humidity'
       oversampling: 16x
       filters:
         - throttle: 15s
         - heartbeat: 60s
         # - debounce: 30s
-        - delta: 0.2
+        - delta: 0.1
     address: 0x76
     update_interval: 10s
 
   - platform: pmsx003
     type: PMSX003
     pm_1_0:
-      name: "pm1"
+      name: 'pm1'
       filters:
         - throttle: 15s
         - heartbeat: 60s
         # - debounce: 30s
         - delta: 2.0
     pm_2_5:
-      name: "pm2.5"
+      name: 'pm2.5'
       filters:
         - throttle: 15s
         - heartbeat: 60s
         # - debounce: 30s
         - delta: 2.0
     pm_10_0:
-      name: "pm10"
+      name: 'pm10'
       filters:
         - throttle: 15s
         - heartbeat: 60s
