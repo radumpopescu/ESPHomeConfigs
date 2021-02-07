@@ -105,17 +105,17 @@ switch:
               ape_switch(ape, 12)
       };
     switches:
-      - name: outside_right
-        id: outside_right
+      - name: terrace_right
+        id: terrace_right
         inverted: true
       - name: living
         id: living
         inverted: true
-      - name: outside_left
-        id: outside_left
+      - name: terrace_left
+        id: terrace_left
         inverted: true
-      - name: R4
-        id: R4
+      - name: bedroom_left
+        id: bedroom_left
         inverted: true
       - name: wall_right
         id: wall_right
@@ -123,9 +123,9 @@ switch:
       - name: wall_left
         id: wall_left
         inverted: true
-      - name: R7
-        id: R7
+      - name: terrace
+        id: terrace
         inverted: true
-      - name: R8
-        id: R8
+      - name: bedroom_right
+        id: bedroom_right
         inverted: true
