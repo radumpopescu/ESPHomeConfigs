@@ -11,8 +11,8 @@ wifi:
 web_server:
   port: 80
 
-api:
-  password: !secret api_password
+# api:
+#   password: !secret api_password
 
 logger:
   level: DEBUG

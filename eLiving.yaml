@@ -19,8 +19,8 @@ logger:
 ota:
   password: !secret ota_password
 
-api:
-  password: !secret api_password
+# api:
+#   password: !secret api_password
 
 i2c:
   id: i2ccomponent

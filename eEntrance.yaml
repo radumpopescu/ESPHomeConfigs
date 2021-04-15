@@ -16,8 +16,8 @@ logger:
 ota:
   password: !secret ota_password
 
-api:
-  password: !secret api_password
+# api:
+#   password: !secret api_password
 
 i2c:
   id: i2ccomponent
@@ -51,18 +51,19 @@ binary_sensor:
         filters:
           - invert:
       - name: bath1
-        filters:
-          - invert:
+        # filters:
+        #   - invert:
         on_state:
           - switch.toggle: bath
       - name: S3
         filters:
           - invert:
       - name: entrance1
-        filters:
-          - invert:
+        # filters:
+        #   - invert:
         on_state:
-          - switch.toggle: stairs
+          - switch.toggle: door
+          - switch.toggle: number
       - name: S5
         filters:
           - invert:
@@ -70,8 +71,8 @@ binary_sensor:
         filters:
           - invert:
       - name: stairs
-        filters:
-          - invert:
+        # filters:
+        #   - invert:
         on_state:
           - switch.toggle: stairs
       - name: S8
